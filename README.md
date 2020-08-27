@@ -8,7 +8,7 @@ Contiene:
   * Liberar memoria swap solo si es necesario
   * Intentar liberar ambas a la vez
 
-#### :sunglasses: PARA INSTALAR SCRIPT PARA DESACTIVAR TURBO BOOST EN INTEL: :sunglasses:
+#### :smirk: PARA INSTALAR SCRIPT PARA DESACTIVAR TURBO BOOST EN INTEL: :smirk:
 ```shell
 wget https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/turbo && sudo mv turbo /bin/
 ```
