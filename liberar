@@ -1,0 +1,68 @@
+#!/bin/bash
+# Autor: MINTERGER
+# Licencia: GNU GPLv3
+# Liberar es un script para limpiar la caché, liberar memoria y limpiar la memoria swap
+
+######### Codigo Para Liberar Memoria ram #########
+    if [[ ! -z $1 && $1 != "ram" && $1 != "swap" && $1 != "all" && $1 != "help" ]]; then
+        echo "Argumento invalido: $1" >&2
+        echo ""
+        echo "Use: $(basename $0) [ram|swap|all|help]"
+        exit 1
+
+    else
+        if [ "$1" == "" ] || [ $1 == "help" ]; then
+            echo "Use: $(basename $0) [ram|swap|all|help]"
+            echo "Ejecuto las opciones [ram|swap|all] como sudo"
+            echo
+            echo "ram   -  limpia la cache de la ram"
+            echo "swap  -  limpia la memoria swap"
+            echo "all   -  limpia ambas ram y swap"
+            echo "help  -  muestra este mensaje"
+
+            exit 1
+        fi
+
+        if [ `whoami` == 'root' ]; then
+
+        ##sync ; echo 1 > /proc/sys/vm/drop_caches
+
+        ##sync ; echo 2 > /proc/sys/vm/drop_caches
+            
+        if [ $1 == "ram" ] || [ $1 == "all" ]; then
+            echo ""
+            echo -e "\e[0m-Limpiando la caché de Ram" ;
+
+            if sync ; echo 3 > /proc/sys/vm/drop_caches; then
+                printf '\n\e[1;32m%s\n%s' ' Confirmación: Caché de Ram liberada'
+            else
+                printf '\n\e[1;31m%s\n%s' ' Error: Caché de Ram no liberada'
+            fi  
+        fi
+
+        if [ $1 == "swap" ] || [ $1 == "all" ]; then
+            if [ "$(free -h | grep Swap | awk '{print $2}')" != "0B" ]; then
+                echo ""
+                echo -e "\e[0m-Limpiando swap";
+
+                if [ "$(free -h | grep Swap | awk '{print $3}')" == "0B" ]; then
+                    printf '\n\e[1;33m%s\n%s' ' No es necesario liberar la memoria Swap'
+                else
+                    if sudo swapoff -a ; sudo swapon -a; then
+                        printf '\n\e[1;32m%s\n%s' ' Confirmación: Caché de Swap liberada'
+                    else
+                        printf '\n\e[1;31m%s\n%s' ' Error: Caché de Swap no liberada'
+                    fi
+
+                fi
+            fi
+        fi
+
+        echo ""
+        
+        else
+            echo "Ejecute este script como sudo. Ej: sudo liberar"
+        fi
+    fi
+    
+######### Fin Codigo Nuevo #########

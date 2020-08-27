@@ -1,0 +1,117 @@
+#!/bin/bash
+## Autor: MINTERGER
+## Licencia: GNU GPLv3
+## Turbo es un script el cual desactiva el turbo boost de procesadores Intel que lo permitan
+
+# Funciones de estado
+
+estado () {
+  state="$(cat /sys/devices/system/cpu/intel_pstate/no_turbo)"
+
+  if [[ $state == "1" ]]; then
+    echo "turbo boost deshabilitado"
+  fi
+
+  if [[ $state == "0" ]]; then
+    echo "turbo boost habilitado"
+  fi
+}
+
+estado2 () {
+  state="$(cat /sys/devices/system/cpu/intel_pstate/no_turbo)"
+
+  if [[ $state == "1" ]]; then
+    echo "turbo boost esta deshabilitado"
+    echo ""
+    echo "Use: sudo $(basename $0) on (para habilitarlo)"
+  fi
+
+  if [[ $state == "0" ]]; then
+    echo "turbo boost esta habilitado"
+    echo ""
+    echo "Use: sudo $(basename $0) off (para deshabilitarlo)"
+  fi
+}
+
+# Fin Funciones de estado
+
+
+# verifica si el archivo no_turbo existe
+if [[ -f /sys/devices/system/cpu/intel_pstate/no_turbo ]]; then
+
+  ## crear y verificar argumentos  
+  if [[ ! -z $1 && $1 != "on" && $1 != "off" && $1 != "status" && $1 != "about" ]]; then
+  
+    echo "Argumento invalido: $1" >&2
+    echo ""
+    echo "Use: $(basename $0) [off|on|status|about]"
+    exit 1
+  
+
+  # verifica si despues de turbo no se puso ninguna opcion
+  elif [[ $1 != "" ]]; then
+    
+    # ver opcion y proceder con el programa (off == 1) == apagado, (on == 0) == encendido
+    if [ "$1" == "on" ] || [ "$1" == "off" ] ; then
+      if [ `whoami` == 'root' ] ; then
+    
+        if [[ $1 == "off" ]]; then
+            echo "1" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo >/dev/null 2>/dev/null
+            estado
+        fi
+        if [[ $1 == "on" ]]; then
+            echo "0" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo >/dev/null 2>/dev/null
+            estado
+        fi
+      
+      else  
+            # respuesta a cuando se ejecuta turbo on/off que no se ejecuta como sudo
+            echo "ejecute este comando como sudo. Ej: sudo $(basename $0) $1"
+      fi
+    fi
+    
+
+    if [[ $1 == "status" ]]; then
+      estado2
+    fi
+    if [[ $1 == "about" ]]; then
+      echo "Autor: MINTERGER"
+      echo "Licencia: GNU GPLv3"
+      echo ""
+      echo "Turbo es un script el cual desactiva|activa el"
+      echo "turbo boost de procesadores Intel que lo permitan"
+    fi
+
+  
+  else
+
+    # codigo cuando se usa turbo sin nada seguido de el
+
+    echo "Use: $(basename $0) [off|on|status|about]"
+    echo "Ejecuto las opciones [off|on] como sudo"
+    echo
+    echo "off    -  desactiva el turbo boost"
+    echo "on     -  activa el turbo boost"
+    echo "status -  muestra el estado de el turbo boost deshabilitado|habilitado"
+    echo "about  -  muestra un mensaje con informacion del autor y de que es el script"
+    exit 1
+  
+  fi
+
+else
+
+  # respuesta en caso de que el archivo que se modifica con este script no exista
+
+  echo "Su procesador no soporta este feature"
+  echo ""
+  echo "Autor: MINTERGER"
+  echo "Licencia: GNU GPLv3"
+  echo ""
+  echo "Turbo es un script el cual desactiva|activa el"
+  echo "turbo boost de procesadores Intel que lo permitan"
+  echo ""
+  echo "Su procesador no soporta este feature"
+fi
+  
+
+# fin del script
