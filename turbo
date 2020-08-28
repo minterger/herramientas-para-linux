@@ -9,11 +9,11 @@ estado () {
   state="$(cat /sys/devices/system/cpu/intel_pstate/no_turbo)"
 
   if [[ $state == "1" ]]; then
-    echo "turbo boost deshabilitado"
+    echo -e "\e[1;31mturbo boost deshabilitado"
   fi
 
   if [[ $state == "0" ]]; then
-    echo "turbo boost habilitado"
+    echo -e "\e[1;32mturbo boost habilitado"
   fi
 }
 
@@ -21,13 +21,13 @@ estado2 () {
   state="$(cat /sys/devices/system/cpu/intel_pstate/no_turbo)"
 
   if [[ $state == "1" ]]; then
-    echo "turbo boost esta deshabilitado"
+    echo -e "\e[1;31mturbo boost esta deshabilitado\e[0m"
     echo ""
     echo "Use: sudo $(basename $0) on (para habilitarlo)"
   fi
 
   if [[ $state == "0" ]]; then
-    echo "turbo boost esta habilitado"
+    echo -e "\e[1;32mturbo boost esta habilitado\e[0m"
     echo ""
     echo "Use: sudo $(basename $0) off (para deshabilitarlo)"
   fi
