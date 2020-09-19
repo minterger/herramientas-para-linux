@@ -2,11 +2,12 @@
 
 # log donde se guardan los datos de speedtest
 log="~/.speedtestlog/speed.log"
+savelog="~/.speedtestlog/log/speed-$(date +%d/%m/%y--%H:%M:%S)"
 
 speedtest () {
 
   if [ -f speed ]; then
-    rm $log
+    mv $log $savelog
     touch $log
   else
     touch $log
@@ -56,10 +57,9 @@ speedtest () {
   echo -e "\033[1;32mUPLOAD: \033[1;37m$upl"
   echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
   echo
-  rm -rf $HOME/$log
 
   if [ -f $log ]; then
-    rm $log
+    mv $log $savelog
   fi 
 
 }
