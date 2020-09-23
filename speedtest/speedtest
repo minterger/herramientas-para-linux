@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # log donde se guardan los datos de speedtest
-log="~/.speedtestlog/speed.log"
-savelog="~/.speedtestlog/log/speed-$(date +%d/%m/%y--%H:%M:%S)"
+log=$(touch ~/.speedtestlog/speed.log)
+date="$(date +%d/%m/%y--%H:%M:%S)"
+savelog=$(mv ~/.speedtestlog/log/speed-$date)
 
 speedtest () {
 
@@ -13,11 +14,11 @@ speedtest () {
     mkdir ~/.speedtestlog/log
   fi
 
-  if [ -f $log ]; then
-    mv $log $savelog
-    touch $log
+  if [ -f ~/.speedtestlog/speed.log ]; then
+    $savelog
+    $log
   else
-    touch $log
+    $log
   fi
 
   aguarde () {
@@ -65,8 +66,8 @@ speedtest () {
   echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
   echo
 
-  if [ -f $log ]; then
-    mv $log $savelog
+  if [ -f ~/.speedtestlog/speed.log ]; then
+    $savelog
   fi 
 
 }
