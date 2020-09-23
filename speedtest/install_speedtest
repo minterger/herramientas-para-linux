@@ -4,6 +4,7 @@ install ()
     mv speedtest /bin/
     chmod +x /bin/speedtest
     wget https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/speedtest/speedtest.py
+    mkdir /etc/speedtest
     mv speedtest.py /etc/speedtest/
 }
 
