@@ -6,7 +6,7 @@ savelog="~/.speedtestlog/log/speed-$(date +%d/%m/%y--%H:%M:%S)"
 
 speedtest () {
 
-  if [ -f ~/.speedtestlog ]; then
+  if [ -d ~/.speedtestlog ]; then
     mkdir ~/.speedtestlog
     mkdir ~/.speedtestlog/log
   fi
@@ -23,7 +23,7 @@ speedtest () {
     comando[1]="$2"
      (
     [[ -e $HOME/fim ]] && rm $HOME/fim
-    [[ ! -d ~/.speedtest ]] && rm -rf /bin/speedtest
+    [[ ! -d ~/.speedtest ]] && rm -rf ~/.speedtest
     ${comando[0]} > /dev/null 2>&1
     ${comando[1]} > /dev/null 2>&1
     touch $HOME/fim
