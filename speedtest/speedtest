@@ -7,10 +7,10 @@ savelog="~/.speedtestlog/log/speed-$(date +%d/%m/%y--%H:%M:%S)"
 speedtest () {
 
   if [ -d ~/.speedtestlog ]; then
-    cd ~
-    mkdir .speedtestlog
-    cd .speedtestlog
-    mkdir log
+    cd
+  else
+    mkdir ~/.speedtestlog
+    mkdir ~/.speedtestlog/log
   fi
 
   if [ -f $log ]; then
