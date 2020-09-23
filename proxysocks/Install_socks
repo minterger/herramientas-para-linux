@@ -2,7 +2,7 @@
 
 install ()
 {
-    wget https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/proxysocks/.socks.sh
+    wget https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/proxysocks/socks.sh
     wget https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/proxysocks/proxy.py
 }
 
@@ -35,9 +35,9 @@ fun_bar () {
 }
 
 echo -e "\033[1;32mDescargando Archivos\033[0m"
-
+echo
 fun_bar install
-
+echo
 echo -e "\033[1;32mPara ejecutar el menu de socks usa:\033[1;31m bash socks.sh\033[0m"
 
 exit
