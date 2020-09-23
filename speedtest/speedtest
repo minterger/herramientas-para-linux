@@ -48,7 +48,7 @@ speedtest () {
     tput cnorm
   }
   fun_tst () {
-    python /etc/speedtest/speedtest.py > $loglocation
+    python /etc/speedtest/speedtest.py > ~/.speedtestlog/speed.log
   }
   echo ""
   echo -e "\e[1;32mEjecutando test de velocidad: \e[1;0m"
