@@ -16,3 +16,19 @@ wget https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/
 Contiene:
   * Ver estado del turbo boost (activado o desactivado)
   * Habilitar el turbo boost y deshabilitarlo
+
+#### :rocket: PARA INSTALAR SCRIPT PARA MEDIR LA VELOCIDAD - SPEEDTEST: :rocket:
+```shell
+wget https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/speedtest/install_speedtest && sudo bash install_speedtest
+```
+
+Contiene:
+  * Ver la velocidad de internet (Descarga, Subida y Ping)
+
+#### :jack_o_lantern: PARA INSTALAR SCRIPT PROXY SOCKS: :jack_o_lantern:
+```shell
+wget https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/proxysocks/install_socks && sudo bash install_socks
+```
+
+Contiene:
+  * Proxy reverso socks con mensaje personalizado
