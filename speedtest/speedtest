@@ -4,7 +4,7 @@
 loglocation="~/.speedtestlog/speed.log"
 log=$(touch ~/.speedtestlog/speed.log)
 date="$(date +%d/%m/%y--%H:%M:%S)"
-savelog=$(mv ~/.speedtestlog/speed.log ~/.speedtestlog/log/speed-$date)
+savelog=$(mv $loglocation ~/.speedtestlog/log/speed-$date)
 
 speedtest () {
 
