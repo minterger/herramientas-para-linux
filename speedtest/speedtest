@@ -2,9 +2,7 @@
 
 # log donde se guardan los datos de speedtest
 loglocation="~/.speedtestlog/speed.log"
-log=$(touch ~/.speedtestlog/speed.log)
 date="$(date +%d/%m/%y--%H:%M:%S)"
-savelog=$(mv $loglocation ~/.speedtestlog/log/speed-$date)
 
 speedtest () {
 
@@ -16,10 +14,10 @@ speedtest () {
   fi
 
   if [ -f $loglocation ]; then
-    $savelog
-    $log
+    mv $loglocation ~/.speedtestlog/log/speed-$date
+    touch ~/.speedtestlog/speed.log
   else
-    $log
+    touch ~/.speedtestlog/speed.log
   fi
 
   aguarde () {
@@ -68,7 +66,7 @@ speedtest () {
   echo
 
   if [ -f $loglocation ]; then
-    $savelog
+    mv $loglocation ~/.speedtestlog/log/speed-$date
   fi 
 
 }
