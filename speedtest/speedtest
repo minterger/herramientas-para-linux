@@ -3,7 +3,7 @@
 # log donde se guardan los datos de speedtest
 log=$(touch ~/.speedtestlog/speed.log)
 date="$(date +%d/%m/%y--%H:%M:%S)"
-savelog=$(mv ~/.speedtestlog/log/speed-$date)
+savelog=$(mv ~/.speedtestlog/speed.log ~/.speedtestlog/log/speed-$date)
 
 speedtest () {
 
