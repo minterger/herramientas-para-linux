@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # log donde se guardan los datos de speedtest
-loglocation="~/.speedtestlog/speed.log"
-date="$(date +%d/%m/%y--%H:%M:%S)"
+loglocation=~/.speedtestlog/speed.log
+date=$(date +%d\|%m\|%y--%H:%M:%S)
 
 speedtest () {
 
@@ -15,9 +15,9 @@ speedtest () {
 
   if [ -f $loglocation ]; then
     mv $loglocation ~/.speedtestlog/log/speed-$date
-    touch ~/.speedtestlog/speed.log
+    touch $loglocation
   else
-    touch ~/.speedtestlog/speed.log
+    touch $loglocation
   fi
 
   aguarde () {
@@ -48,8 +48,7 @@ speedtest () {
     tput cnorm
   }
   fun_tst () {
-    cd ~
-    python /etc/speedtest/speedtest.py > .speedtestlog/speed.log
+    python /etc/speedtest/speedtest.py > $loglocation
   }
   echo ""
   echo -e "\e[1;32mEjecutando test de velocidad: \e[1;0m"
@@ -64,7 +63,6 @@ speedtest () {
   echo -e "\033[1;32mDOWNLOAD: \033[1;37m$down"
   echo -e "\033[1;32mUPLOAD: \033[1;37m$upl"
   echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  echo
 
   if [ -f $loglocation ]; then
     mv $loglocation ~/.speedtestlog/log/speed-$date
