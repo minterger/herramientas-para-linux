@@ -50,7 +50,7 @@ speedtest () {
   fun_tst () {
     python /etc/speedtest/speedtest.py > $loglocation
   }
-  echo ""
+  
   echo -e "\e[1;32mEjecutando test de velocidad: \e[1;0m"
   echo ""
   aguarde 'fun_tst'
