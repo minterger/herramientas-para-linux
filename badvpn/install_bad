@@ -5,7 +5,6 @@ install ()
     wget -O /bin/minudp https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/badvpn/minudp
     chmod 777 /bin/minudp
 }
-}
 
 fun_bar () {
   comando[0]="$1"
