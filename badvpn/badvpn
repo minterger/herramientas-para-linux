@@ -1,0 +1,27 @@
+#!/bin/bash
+
+BadVPN () {
+pid_badvpn=$(ps x | grep udpgw | grep -v grep | awk '{print $1}')
+  if [ "$pid_badvpn" = "" ]; then
+    echo
+    echo "Iniciando Badvpn"
+    echo
+    if [[ ! -e /bin/service ]]; then
+    wget -O /bin/service https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/badvpn/service &>/dev/null
+    chmod 777 /bin/service
+    fi
+    screen -dmS screen /bin/service --listen-addr 127.0.0.1:333 --max-clients 1000 --max-connections-for-client 10
+    [[ "$(ps x | grep service | grep -v grep | awk '{print $1}')" ]] && echo "Inciado" || echo "Fallo"
+    echo
+  else
+    echo
+    echo "Parando Badvpn"
+    kill -9 $(ps x | grep service | grep -v grep | awk '{print $1'}) > /dev/null 2>&1
+    killall service > /dev/null 2>&1
+    [[ ! "$(ps x | grep service | grep -v grep | awk '{print $1}')" ]] && echo -e "${cor[4]} ${txt[125]}"
+    unset pid_badvpn
+    fi
+unset pid_badvpn
+}
+
+BadVPN
