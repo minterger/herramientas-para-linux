@@ -32,12 +32,3 @@ wget https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/
 
 Contiene:
   * Proxy reverso socks con mensaje personalizado
-
-#### :jack_o_lantern: PARA INSTALAR BADVPN: :jack_o_lantern:
-```shell
-wget https://raw.githubusercontent.com/minterger/herramientas-para-linux/master/badvpn/install_bad && sudo bash install_bad
-```
-
-Contiene:
-  * Badvpn corriendo en puerto: 333
-  * Nombre del servicio para no ser detectado: service
