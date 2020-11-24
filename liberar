@@ -28,7 +28,7 @@
         ##sync ; echo 1 > /proc/sys/vm/drop_caches
 
         ##sync ; echo 2 > /proc/sys/vm/drop_caches
-            
+
         if [ $1 == "ram" ] || [ $1 == "all" ]; then
             echo ""
             echo -e "\e[0m-Limpiando la caché de Ram" ;
@@ -37,7 +37,7 @@
                 printf '\n\e[1;32m%s\e[0m\n%s' ' Confirmación: Caché de Ram liberada'
             else
                 printf '\n\e[1;31m%s\e[0m\n%s' ' Error: Caché de Ram no liberada'
-            fi  
+            fi
         fi
 
         if [ $1 == "swap" ] || [ $1 == "all" ]; then
@@ -59,14 +59,14 @@
                 echo ""
                 echo -e "\e[0m-Limpiando swap";
                 printf '\n\e[1;33m%s\e[0m\n%s' ' No dispone de memoria Swap'
-            fi 
+            fi
         fi
 
         echo ""
-        
+
         else
             echo -e "\e[0mEjecute este script como sudo. Ej: sudo liberar"
         fi
     fi
-    
+
 ######### Fin Codigo Nuevo #########
