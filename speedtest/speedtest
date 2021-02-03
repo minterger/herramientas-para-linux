@@ -55,10 +55,12 @@ speedtest () {
   echo ""
   aguarde 'fun_tst'
   echo ""
+  region=$(cat $loglocation | grep Hosted | awk -F ":" '{print $1}' | awk -F "Hosted by " '{print $2}')
   png=$(cat $loglocation | grep ms | awk -F ": " '{print $2}')
   down=$(cat $loglocation | grep Download: | awk '{print $2 " " $3}')
   upl=$(cat $loglocation | grep Upload: | awk '{print $2 " " $3}')
   echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+  echo -e "\033[1;32mLOCATION: \033[1;37m$region"
   echo -e "\033[1;32mPING (LATENCIA): \033[1;37m$png"
   echo -e "\033[1;32mDOWNLOAD: \033[1;37m$down"
   echo -e "\033[1;32mUPLOAD: \033[1;37m$upl"
