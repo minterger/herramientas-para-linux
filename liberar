@@ -41,14 +41,14 @@
         fi
 
         if [ $1 == "swap" ] || [ $1 == "all" ]; then
-            if [ "$(free -h | grep Swap | awk '{print $2}')" != "0B" ]; then
+            if [ "$(free -h | grep -E "^Swap|^Inter" | awk '{print $2}')" != "0B" ]; then
                 echo ""
                 echo -e "\e[0m-Limpiando swap";
 
-                if [ "$(free -h | grep Swap | awk '{print $3}')" == "0B" ]; then
+                if [ "$(free -h | grep -E "^Swap|^Inter" | awk '{print $3}')" == "0B" ]; then
                     printf '\n\e[1;33m%s\e[0m\n%s' ' No es necesario liberar la memoria Swap'
                 else
-                    if sudo swapoff -a ; sudo swapon -a; then
+                    if sudo dphys-swapfile swapoff; sudo dphys-swapfile swapon; then
                         printf '\n\e[1;32m%s\e[0m\n%s' ' Confirmación: Caché de Swap liberada'
                     else
                         printf '\n\e[1;31m%s\e[0m\n%s' ' Error: Caché de Swap no liberada'
