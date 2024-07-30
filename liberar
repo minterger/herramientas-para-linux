@@ -47,7 +47,7 @@
 
                 if [ "$(free -h | grep -E "^Swap|^Inter" | awk '{print $3}')" == "0B" ]; then
                     printf '\n\e[1;33m%s\e[0m\n%s' ' No es necesario liberar la memoria Swap'
-                else if which dphys-swapfile; then
+                elif which dphys-swapfile; then
                     if sudo dphys-swapfile swapoff; sudo dphys-swapfile swapon; then
                         printf '\n\e[1;32m%s\e[0m\n%s' ' Confirmación: Caché de Swap liberada'
                     else
